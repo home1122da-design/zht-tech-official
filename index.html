@@ -1,0 +1,166 @@
+10.08 10:55 am
+My file
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZHT Tech</title>
+    <!-- Google Fonts for modern styling -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            emailjs.init("qpLIpBfdOmIr-F7Pg");
+        })();
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            background-color: #2b1b17; /* Rich Coffee Brown Background */
+            color: #ffffff; /* Clean White Text */
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background-color: #3d2314;
+            border-bottom: 1px solid #4e2e1b;
+        }
+        .logo {
+            font-size: 20px;
+            font-weight: 600;
+            color: #ffffff;
+        }
+        .menu-icon {
+            font-size: 24px;
+            cursor: pointer;
+            color: #ffffff;
+        }
+        .container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .contact-box {
+            background-color: #3d2314; /* Coffee Theme Card */
+            padding: 25px;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #ffffff;
+            font-weight: 600;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 14px;
+            color: #e0d0c8;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            background-color: #2b1b17;
+            border: 1px solid #5a3822;
+            border-radius: 8px;
+            color: #ffffff;
+            font-size: 14px;
+            outline: none;
+        }
+        input:focus, textarea:focus {
+            border-color: #ffffff;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #ffffff;
+            color: #2b1b17;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        button:hover {
+            background-color: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">ZHT Tech</div>
+        <div class="menu-icon">&#9776;</div>
+    </header>
+
+    <div class="container">
+        <div class="contact-box">
+            <h2>Contact Us</h2>
+            <form id="contact-form">
+                <div class="form-group">
+                    <label>Your Name</label>
+                    <input type="text" id="user_name" name="user_name" placeholder="Enter your name" required>
+                </div>
+                <div class="form-group">
+                    <label>Your Email</label>
+                    <input type="email" id="user_email" name="user_email" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label>Subject</label>
+                    <input type="text" id="subject" name="subject" placeholder="Enter subject" required>
+                </div>
+                <div class="form-group">
+                    <label>Message</label>
+                    <textarea id="message" name="message" rows="4" placeholder="Type your message..." required></textarea>
+                </div>
+                <button type="submit" id="submit-btn">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const contactForm = document.getElementById('contact-form');
+        contactForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const btn = document.getElementById('submit-btn');
+            btn.textContent = 'Sending...';
+
+            const serviceID = 'service_j7yj5g6';
+            const templateID = 'template_9h6fkem';
+
+            emailjs.sendForm(serviceID, templateID, this)
+                .then(() => {
+                    btn.textContent = 'Send Message';
+                    alert('Message sent successfully!');
+                    contactForm.reset();
+                }, (err) => {
+                    btn.textContent = 'Send Message';
+                    alert('Failed to send message. Error: ' + JSON.stringify(err));
+                });
+        });
+    </script>
+</body>
+</html>
+
